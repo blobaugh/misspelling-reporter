@@ -14,6 +14,12 @@ Inspired by Eric Meyer, Imagined by #BeachPress 2013, Doubted yet contributed by
 Misspelling Reporter allows site visitors to highlight a misspelled word on your site and click
 the message that pops up to alert the site admin and post author of the misspelling.
 
+How to use:
+* Install and activate plugin
+* Visit a single post
+* Highlight a word
+* Click the report button that appears in the upper left
+
 == Installation ==
 
 This section describes how to install the plugin and get it working.
