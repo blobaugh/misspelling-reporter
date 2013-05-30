@@ -1,49 +1,53 @@
-function getSelectionText() {
-	var text = "";
-	if ( window.getSelection ) {
-		text = window.getSelection().toString();
-	} else if ( document.selection && document.selection.type != "Control" ) {
-		text = document.selection.createRange().text;
-	}
-	return text;
-}
+( function( window, $ ) {
+	var document = window.document;
 
+	var MisspellingReporter = function() {
 
+		var SELF = this;
 
-jQuery(document).ready(function($){
+		SELF.getSelectionText = function() {
+			var text = "";
+			if ( window.getSelection ) {
+				text = window.getSelection().toString();
+			} else if ( document.selection && document.selection.type != "Control" ) {
+				text = document.selection.createRange().text;
+			}
+			return text;
+		};
 
-	$( 'body' ).on( 'mouseup', function(e){
-		selected = getSelectionText();
-		var word = '';
+		SELF.missrClicked = function( text ) {
+			var data = {
+				action: 'missr_report',
+				post_id: post.post_id,
+				selected: text
+			};
 
-		if ( '' != selected ) {
-			var first_word = selected.split(' ');
-			word = first_word[0];
-		}
+			$.post( post.ajaxurl, data, function(response) {
+				//console.log('Got this from the server: ' + response);
+			});
+		};
 
-		if ( '' ==  word )
-			return;
+		$(document).ready(function($){
 
-		// Show popdown to report misspelling
-		$( 'body' ).append('<div id="missr_dialog" onclick="missr_clicked(\''+word+'\');"> Click to Report Misspelling</div>');
-	});
+			$( 'body' ).on( 'mouseup', function(e){
+				selected = SELF.getSelectionText();
+				var word = '';
 
-});
+				if ( '' != selected ) {
+					var first_word = selected.split(' ');
+					word = first_word[0];
+				}
 
+				if ( '' ==  word )
+					return;
 
-function missr_clicked( text ) {
-	var data = {
-		action: 'missr_report',
-		post_id: post.post_id,
-		selected: text
+				// Show popdown to report misspelling
+				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;"> Click to Report Misspelling</div>');
+			});
+
+		});
 	};
-	var $dialog = jQuery( document.getElementById( 'missr_dialog' ) );
-	jQuery.post( post.ajaxurl, data, function(response) {
-		//console.log('Got this from the server: ' + response);
-	});
-	$dialog.addClass( 'success' );
-	$dialog.text( 'Success!' );
-	setTimeout( function(){
-		$dialog.fadeOut();
-	}, 500 );
-}
+
+	window.MisspellingReporter = new MisspellingReporter();
+
+} )( window, jQuery );
