@@ -1,5 +1,9 @@
 === Misspelling Reporter ===
+<<<<<<< HEAD
+Contributors: blobaugh, jaffe75, thoronas, grantlandram, alexmansfield, jkudish, DrewAPicture
+=======
 Contributors: JustinSainton, blobaugh, jaffe75, thoronas, grantlandram, alexmansfield, jkudish
+>>>>>>> upstream/master
 Tags: report, misspell, misspelling reporter, typo, spell check, crowd source spelling
 Requires at least: 3.5
 Tested up to: 3.6
