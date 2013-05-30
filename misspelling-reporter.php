@@ -18,6 +18,9 @@ add_action('wp_ajax_missr_report', 'missr_ajax_report');
 add_action('wp_ajax_nopriv_missr_report', 'missr_ajax_report');
 
 function missr_enqueue_scripts() {
+    if ( ! is_single() )
+    	return;
+    	
     global $post;
 
     // Front end text selection code
