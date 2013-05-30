@@ -21,10 +21,16 @@
 				post_id: post.post_id,
 				selected: text
 			};
+			var $dialog = $( document.getElementById( 'missr_dialog' ) );
 
 			$.post( post.ajaxurl, data, function(response) {
 				//console.log('Got this from the server: ' + response);
 			});
+			$dialog.addClass( 'success' );
+			$dialog.text( 'Success!' );
+			setTimeout( function(){
+				//$dialog.fadeOut();
+			}, 500 );
 		};
 
 		$(document).ready(function($){
@@ -42,7 +48,7 @@
 					return;
 
 				// Show popdown to report misspelling
-				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;"> Click to Report Misspelling</div>');
+				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');"> Click to Report Misspelling</div>');
 			});
 
 		});
