@@ -1,5 +1,5 @@
 === Misspelling Reporter ===
-Contributors: DrewAPicture, JustinSainton, blobaugh, jaffe75, thoronas, grantlandram, alexmansfield, jkudish, tannerm, Viper007Bond, jeremyfelt
+Contributors: DrewAPicture, JustinSainton, blobaugh, jaffe75, thoronas, grantlandram, alexmansfield, jkudish, tannerm, Viper007Bond, jeremyfelt, pento
 Tags: report, misspell, misspelling reporter, typo, spell check, crowd source spelling
 Requires at least: 3.5
 Tested up to: 3.6
@@ -26,11 +26,15 @@ e.g.
 
 == Changelog ==
 
+= 0.6.2 =
+* Fixed issues causing wp minify to break (pento)
+* Does not email post author if the same email is used for site admin (pento)
+
 = 0.6.1 =
 * Added success state to message box and disappear after click
-* Blessed by Nacin
+* Nacin says nice plugin :)
 * First community contribution by Jeremy Felt!
 
 = 0.6 =
-* Initial plugin release
+* Initial plugin release (#BeachPress 2013)
 * Joey Kudish proved wrong that this could be created in less than 2 days. It took less than 2 hours!
