@@ -27,6 +27,9 @@ e.g.
 
 == Changelog ==
 
+= 0.6.1 =
+* Added success state to message box and disappear after click
+
 = 0.6 =
 * Initial plugin release
 * Joey Kudish proved wrong that this could be created in less than 2 days. It took less than 2 hours!
