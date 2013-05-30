@@ -66,7 +66,9 @@ function missr_ajax_report() {
     
     // mail post author
     $user = get_userdata( $post->post_author );
-    wp_mail( $user->user_email, $subject, $body );
+    if ( get_option( 'admin_email' ) !== $user->user_email ) {
+    	wp_mail( $user->user_email, $subject, $body );
+    }
     
     echo __( 'Misspelling Reported', 'missr' );
 }
