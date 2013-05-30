@@ -29,7 +29,9 @@
 			$dialog.addClass( 'success' );
 			$dialog.text( 'Success!' );
 			setTimeout( function(){
-				$dialog.fadeOut();
+				$dialog.fadeOut(function(){
+					$dialog.remove();
+				});
 			}, 500 );
 		};
 
