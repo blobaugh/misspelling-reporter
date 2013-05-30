@@ -12,6 +12,7 @@ define( 'MISSR_PLUGIN_DIR', trailingslashit( dirname( __FILE__ ) ) );
 define( 'MISSR_PLUGIN_URL', trailingslashit( WP_PLUGIN_URL . '/' . basename( __DIR__ ) ) );
 define( 'MISSR_PLUGIN_FILE', MISSR_PLUGIN_DIR . basename( __DIR__ ) . '.php' );
 
+load_plugin_textdomain( 'msr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 add_action( 'wp_enqueue_scripts', 'missr_enqueue_scripts' );
 add_action( 'wp_ajax_missr_report', 'missr_ajax_report' );
