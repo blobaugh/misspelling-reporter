@@ -46,8 +46,13 @@
 					word = first_word[0];
 				}
 
-				if ( '' ==  word )
+				if ( '' ==  word ) {
+					var $dialog = $( document.getElementById( 'missr_dialog' ) );
+					$dialog.fadeOut(function(){
+						$dialog.remove();
+					});
 					return;
+				}
 
 				// Show popdown to report misspelling
 				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');">' + post.click_to_report + '</div>');
