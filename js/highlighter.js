@@ -23,9 +23,9 @@ jQuery(document).ready(function($){
 
 		if ( '' ==  word )
 			return;
+
 		// Show popdown to report misspelling
-		$( 'body' ).append('' +
-				'<div id="missr_overlay"></div><div id="missr_dialog" onclick="missr_clicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;">Click to Report Misspelling</div></div>');
+		$( 'body' ).append('<div id="missr_dialog" onclick="missr_clicked(\''+word+'\');"> Click to Report Misspelling</div>');
 	});
 
 });
@@ -37,8 +37,13 @@ function missr_clicked( text ) {
 		post_id: post.post_id,
 		selected: text
 	};
-
+	var $dialog = jQuery( document.getElementById( 'missr_dialog' ) );
 	jQuery.post( post.ajaxurl, data, function(response) {
 		//console.log('Got this from the server: ' + response);
 	});
+	$dialog.addClass( 'success' );
+	$dialog.text( 'Success!' );
+	setTimeout( function(){
+		$dialog.fadeOut();
+	}, 500 );
 }
