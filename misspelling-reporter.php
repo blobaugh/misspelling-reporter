@@ -23,7 +23,7 @@ function missr_enqueue_scripts() {
     	return;
 
     // Front end text selection code
-    wp_enqueue_script( 'missr_highlighter', MISSR_PLUGIN_URL . '/js/highlighter.js', array( 'jquery' ) );
+    wp_enqueue_script( 'missr_highlighter', MISSR_PLUGIN_URL . 'js/highlighter.js', array( 'jquery' ) );
     wp_enqueue_style( 'misspelling_style', MISSR_PLUGIN_URL . 'style.css' );
 
     $info = array( 
@@ -66,7 +66,9 @@ function missr_ajax_report() {
     
     // mail post author
     $user = get_userdata( $post->post_author );
-    wp_mail( $user->user_email, $subject, $body );
+    if ( get_option( 'admin_email' ) !== $user->user_email ) {
+    	wp_mail( $user->user_email, $subject, $body );
+    }
     
     echo __( 'Misspelling Reported', 'missr' );
 }
