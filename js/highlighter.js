@@ -15,7 +15,7 @@
 			return text;
 		};
 
-		SELF.missr_clicked = function( text ) {
+		SELF.missrClicked = function( text ) {
 			var data = {
 				action: 'missr_report',
 				post_id: post.post_id,
@@ -42,7 +42,7 @@
 					return;
 
 				// Show popdown to report misspelling
-				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missr_clicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;"> Click to Report Misspelling</div>');
+				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;"> Click to Report Misspelling</div>');
 			});
 
 		});
