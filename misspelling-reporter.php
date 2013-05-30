@@ -35,9 +35,9 @@ class Misspelt {
 
 		load_plugin_textdomain( 'missr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		add_action( 'wp_enqueue_scripts', 'missr_enqueue_scripts' );
-		add_action( 'wp_ajax_missr_report', 'missr_ajax_report' );
-		add_action( 'wp_ajax_nopriv_missr_report', 'missr_ajax_report' );
+		add_action( 'wp_enqueue_scripts', array( $this, 'missr_enqueue_scripts' ) );
+		add_action( 'wp_ajax_missr_report', array( $this, 'missr_ajax_report' ) );
+		add_action( 'wp_ajax_nopriv_missr_report', array( $this, 'missr_ajax_report' ) );
 	}
 
 	/**
@@ -107,3 +107,5 @@ class Misspelt {
 
 } // Misspelt
 } // class exists
+
+$load = new Misspelt;
