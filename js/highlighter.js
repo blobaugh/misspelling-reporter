@@ -23,9 +23,9 @@ jQuery(document).ready(function($){
 
 		if ( '' ==  word )
 			return;
-
 		// Show popdown to report misspelling
-		$( 'body' ).append('<div id="missr_dialog" onclick="missr_clicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;"> Click to Report Misspelling</div>');
+		$( 'body' ).append('' +
+				'<div id="missr_overlay"></div><div id="missr_dialog" onclick="missr_clicked(\''+word+'\');" style="cursor: pointer; position: fixed; top: 0px; z-index: 999999999; padding: 7px; background-color: yellow; border: 1px solid darkyellow;">Click to Report Misspelling</div></div>');
 	});
 
 });

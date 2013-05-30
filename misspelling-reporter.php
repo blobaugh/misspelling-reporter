@@ -25,6 +25,7 @@ function missr_enqueue_scripts() {
 
     // Front end text selection code
     wp_enqueue_script( 'missr_highlighter', MISSR_PLUGIN_URL . '/js/highlighter.js', array( 'jquery' ) );
+		wp_enqueue_style( 'misspelling_style', MISSR_PLUGIN_URL . 'style.css' );
 
     $info = array( 'post_id' => $post->ID, 'ajaxurl' => admin_url( 'admin-ajax.php', 'relative' ) );
     wp_localize_script( 'missr_highlighter', 'post', $info );
