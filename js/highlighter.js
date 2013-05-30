@@ -27,7 +27,7 @@
 				//console.log('Got this from the server: ' + response);
 			});
 			$dialog.addClass( 'success' );
-			$dialog.text( 'Success!' );
+			$dialog.text( post.success );
 			setTimeout( function(){
 				$dialog.fadeOut(function(){
 					$dialog.remove();
@@ -50,7 +50,7 @@
 					return;
 
 				// Show popdown to report misspelling
-				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');"> Click to Report Misspelling</div>');
+				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');">' + post.click_to_report + '</div>');
 			});
 
 		});

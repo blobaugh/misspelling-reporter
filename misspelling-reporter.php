@@ -24,10 +24,20 @@ function missr_enqueue_scripts() {
 
     // Front end text selection code
     wp_enqueue_script( 'missr_highlighter', MISSR_PLUGIN_URL . '/js/highlighter.js', array( 'jquery' ) );
-		wp_enqueue_style( 'misspelling_style', MISSR_PLUGIN_URL . 'style.css' );
+    wp_enqueue_style( 'misspelling_style', MISSR_PLUGIN_URL . 'style.css' );
 
-    $info = array( 'post_id' => get_the_ID(), 'ajaxurl' => admin_url( 'admin-ajax.php', 'relative' ) );
-    wp_localize_script( 'missr_highlighter', 'post', $info );
+    $info = array( 
+    	'post_id'         => get_the_ID(), 
+    	'ajaxurl'         => admin_url( 'admin-ajax.php', 'relative' ),
+    	'success'         => __( 'Success!', 'missr' ),
+    	'click_to_report' => __( 'Click to report misspelling', 'missr' ) 
+    );
+    
+    wp_localize_script( 
+    	'missr_highlighter', 
+    	'post',
+    	$info 
+    );
 }
 
 function missr_ajax_report() {
