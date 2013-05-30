@@ -32,6 +32,9 @@ e.g.
 
 == Changelog ==
 
+= 0.6.3 =
+* Updates to Arabic translation (DrewAPicture)
+
 = 0.6.2 =
 * Fixed issues causing wp minify to break (pento)
 * Does not email post author if the same email is used for site admin (pento)
