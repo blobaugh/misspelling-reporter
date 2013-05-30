@@ -12,7 +12,7 @@ define( 'MISSR_PLUGIN_DIR', trailingslashit( dirname( __FILE__ ) ) );
 define( 'MISSR_PLUGIN_URL', trailingslashit( WP_PLUGIN_URL . '/' . basename( __DIR__ ) ) );
 define( 'MISSR_PLUGIN_FILE', MISSR_PLUGIN_DIR . basename( __DIR__ ) . '.php' );
 
-load_plugin_textdomain( 'msr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+load_plugin_textdomain( 'missr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 add_action( 'wp_enqueue_scripts', 'missr_enqueue_scripts' );
 add_action( 'wp_ajax_missr_report', 'missr_ajax_report' );
@@ -47,7 +47,7 @@ function missr_ajax_report() {
     
     $post = get_post( $original_post_id );
     
-    $subject = __( "Misspelling Report", 'msr' );
+    $subject = __( "Misspelling Report", 'missr' );
     
     $body = "Post: " . get_permalink( $post->ID );
     $body .= "\n\nMisspelling: " . esc_html( $_POST['selected'] ); 
@@ -60,5 +60,5 @@ function missr_ajax_report() {
     $user = get_userdata( $post->post_author );
     wp_mail( $user->user_email, $subject, $body );
     
-    echo __( 'Misspelling Reported', 'msr' );
+    echo __( 'Misspelling Reported', 'missr' );
 }
