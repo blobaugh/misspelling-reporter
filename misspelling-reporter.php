@@ -4,7 +4,7 @@
  * Plugin Name: Misspelling Reporter
  * Plugin URI: https://github.com/blobaugh/misspelling-reporter
  * Description: Allows users to highlight misspelled text and report to the site/article admins. Inspired by #BeachPress2013
- * Version: 0.6
+ * Version: 0.6.1
  * Author: Ben Lobaugh
  * Author URI: http://ben.lobaugh.net
  */
@@ -26,6 +26,7 @@ function missr_enqueue_scripts() {
 
     // Front end text selection code
     wp_enqueue_script( 'missr_highlighter', MISSR_PLUGIN_URL . '/js/highlighter.js', array( 'jquery' ) );
+		wp_enqueue_style( 'misspelling_style', MISSR_PLUGIN_URL . 'style.css' );
 
     $info = array( 'post_id' => $post->ID, 'ajaxurl' => admin_url( 'admin-ajax.php', 'relative' ) );
     wp_localize_script( 'missr_highlighter', 'post', $info );
