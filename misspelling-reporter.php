@@ -73,16 +73,18 @@ class Misspelt {
 	 * @since 0.6
 	 */
 	public function ajax_report() {
-
+		$original_post_id = absint( $_POST['post_id'] );
+		
 		$args = array(
 			'post_type' => 'missr_report',
 			'post_title' => sanitize_text_field( $_POST['selected'] ),
+			'post_parent' => $original_post_id
 		);
 
 		$post_id = wp_insert_post( $args );
-		$original_post_id = absint( $_POST['post_id'] );
+		
 
-		update_post_meta( $post_id, 'missr_post_id', $original_post_id );
+		//update_post_meta( $post_id, 'missr_post_id', $original_post_id );
 
 		$this->email_notify( $original_post_id );
 	}
