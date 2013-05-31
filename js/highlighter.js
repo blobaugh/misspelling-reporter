@@ -15,11 +15,11 @@
 			return text;
 		};
 
-		SELF.missrClicked = function( text ) {
+		SELF.missrClicked = function( node ) {
 			var data = {
 				action: 'missr_report',
 				post_id: post.post_id,
-				selected: text
+				selected: $(node).attr('data-word')
 			};
 			var $dialog = $( document.getElementById( 'missr_dialog' ) );
 
@@ -55,7 +55,7 @@
 				}
 
 				// Show popdown to report misspelling
-				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');">' + post.click_to_report + '</div>');
+				$( 'body' ).append($('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(this);">' + post.click_to_report + '</div>').attr('data-word', word));
 			});
 
 		});
