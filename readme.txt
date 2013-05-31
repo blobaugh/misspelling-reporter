@@ -1,5 +1,5 @@
 === Misspelling Reporter ===
-Contributors: JustinSainton, blobaugh, jaffe75, thoronas, grantlandram, DrewAPicture, alexmansfield, jkudish, tannerm, Viper007Bond, jeremyfelt, pento
+Contributors: JustinSainton, blobaugh, jaffe75, thoronas, grantlandram, DrewAPicture, alexmansfield, jkudish, tannerm, Viper007Bond, jeremyfelt, pento, itsananderson
 Tags: report, misspell, misspelling reporter, typo, spell check, crowd source spelling
 Requires at least: 3.5
 Tested up to: 3.6
