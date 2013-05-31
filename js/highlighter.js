@@ -43,6 +43,9 @@
 
 				if ( '' != selected ) {
 
+					var $dialog = $( document.getElementById( 'missr_dialog' ) );
+					$dialog.remove();
+
 					// Retrieve cursor position
 					xposition = e.pageX + 20;
 					yposition = e.pageY - 8;
