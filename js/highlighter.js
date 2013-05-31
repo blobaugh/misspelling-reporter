@@ -36,6 +36,7 @@
 		};
 
 		$(document).ready(function($){
+
 			$( 'body' ).on( 'mouseup', function(e){
 				selected = SELF.getSelectionText();
 				var word = '';
