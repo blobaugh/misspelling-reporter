@@ -19,7 +19,7 @@
 			var data = {
 				action: 'missr_report',
 				post_id: post.post_id,
-				selected: $(node).attr('data-selection')
+				selected: $(node).attr('data-word')
 			};
 			var $dialog = $( document.getElementById( 'missr_dialog' ) );
 
@@ -54,8 +54,7 @@
 				}
 
 				// Show popdown to report misspelling
-				var $newDialog = $('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(this);">' + post.click_to_report + '</div>').attr('data-selection', word);
-				$( 'body' ).append($newDialog);
+				$( 'body' ).append($('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(this);">' + post.click_to_report + '</div>').attr('data-word', word));
 			});
 
 		});
