@@ -46,7 +46,7 @@ class Misspelt {
 	 * @since 0.6
 	 */
 	public function enqueue_scripts() {
-		if ( ! is_single() )
+		if ( ! is_singular() )
 			return;
 
 		// Front end text selection code
@@ -75,8 +75,8 @@ class Misspelt {
 	public function ajax_report() {
 
 		$args = array(
-		'post_type' => 'missr_report',
-		'post_title' => sanitize_text_field( $_POST['selected'] ),
+			'post_type' => 'missr_report',
+			'post_title' => sanitize_text_field( $_POST['selected'] ),
 		);
 
 		$post_id = wp_insert_post( $args );
@@ -84,23 +84,32 @@ class Misspelt {
 
 		update_post_meta( $post_id, 'missr_post_id', $original_post_id );
 
+		$this->email_notify( $original_post_id );
+	}
 
-		$post = get_post( $original_post_id );
+	/**
+	 * Notify some stuff
+	 *
+	 * @since 0.6.3
+	 *
+	 * @param int $post_id The supplied post id.
+	 */
+	public function email_notify( $post_id ) {
+		$post = get_post( $post_id );
 
 		$subject = __( 'Misspelling Report', 'missr' );
 
-		$body = __( 'Post: ', 'missr' ) . get_permalink( $post->ID );
-		$body .= "\n\n" . __( 'Misspelling: ', 'missr' ) . esc_html( $_POST['selected'] );
+		$body = __( 'Post: ', 'missr' ) . get_permalink( $post->ID ) . "\n\n";
+		$body .= __( 'Misspelling: ', 'missr' ) . esc_html( $_POST['selected'] );
 
 		// Email site admin
 		wp_mail( get_option( 'admin_email' ), $subject, $body );
 
-
 		// mail post author
 		$user = get_userdata( $post->post_author );
-		if ( get_option( 'admin_email' ) !== $user->user_email ) {
+
+		if ( get_option( 'admin_email' ) !== $user->user_email )
 			wp_mail( $user->user_email, $subject, $body );
-		}
 
 		_e( 'Misspelling Reported', 'missr' );
 	}
