@@ -115,7 +115,6 @@ class Misspelt {
 			wp_mail( $user->user_email, $subject, $body );
 
 		_e( 'Misspelling Reported', 'missr' );
-
 	}
 
 } // Misspelt
