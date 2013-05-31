@@ -34,6 +34,9 @@ e.g.
 
 = 0.6.3 =
 * Updates to Arabic translation (DrewAPicture)
+* Classified
+* Fix JS potential XSS vulnerability (itsananderson)
+* General code cleanup to keep developers happy :)
 
 = 0.6.2 =
 * Fixed issues causing wp minify to break (pento)
