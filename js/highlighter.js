@@ -15,11 +15,11 @@
 			return text;
 		};
 
-		SELF.missrClicked = function( text ) {
+		SELF.missrClicked = function( node ) {
 			var data = {
 				action: 'missr_report',
 				post_id: post.post_id,
-				selected: text
+				selected: $(node).attr('data-selection')
 			};
 			var $dialog = $( document.getElementById( 'missr_dialog' ) );
 
@@ -36,7 +36,6 @@
 		};
 
 		$(document).ready(function($){
-
 			$( 'body' ).on( 'mouseup', function(e){
 				selected = SELF.getSelectionText();
 				var word = '';
@@ -55,7 +54,8 @@
 				}
 
 				// Show popdown to report misspelling
-				$( 'body' ).append('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(\''+word+'\');">' + post.click_to_report + '</div>');
+				var $newDialog = $('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(this);">' + post.click_to_report + '</div>').attr('data-selection', word);
+				$( 'body' ).append($newDialog);
 			});
 
 		});
