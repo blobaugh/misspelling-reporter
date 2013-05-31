@@ -46,7 +46,7 @@ class Misspelt {
 	 * @since 0.6
 	 */
 	public function enqueue_scripts() {
-		if ( ! is_single() )
+		if ( ! is_singular() )
 			return;
 
 		// Front end text selection code
