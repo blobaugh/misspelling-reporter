@@ -75,14 +75,15 @@ class Misspelt {
 	public function ajax_report() {
 
 		$args = array(
-			'post_type' => 'missr_report',
-			'post_title' => sanitize_text_field( $_POST['selected'] ),
+		'post_type' => 'missr_report',
+		'post_title' => sanitize_text_field( $_POST['selected'] ),
 		);
 
 		$post_id = wp_insert_post( $args );
 		$original_post_id = absint( $_POST['post_id'] );
 
 		update_post_meta( $post_id, 'missr_post_id', $original_post_id );
+
 
 		$post = get_post( $original_post_id );
 
@@ -93,6 +94,7 @@ class Misspelt {
 
 		// Email site admin
 		wp_mail( get_option( 'admin_email' ), $subject, $body );
+
 
 		// mail post author
 		$user = get_userdata( $post->post_author );
