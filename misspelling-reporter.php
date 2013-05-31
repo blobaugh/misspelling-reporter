@@ -94,10 +94,7 @@ class Misspelt {
 	 *
 	 * @param int $post_id The supplied post id.
 	 */
-	public function email_notify( $post_id = null ) {
-		if ( null == $post_id )
-			return;
-
+	public function email_notify( $post_id ) {
 		$post = get_post( $post_id );
 
 		$subject = __( 'Misspelling Report', 'missr' );
