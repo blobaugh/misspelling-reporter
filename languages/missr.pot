@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Misspelling Reporter\n"
-"POT-Creation-Date: 2013-05-29 22:03-0800\n"
-"PO-Revision-Date: 2013-05-30 09:46-0800\n"
+"POT-Creation-Date: 2013-05-30 14:33-0800\n"
+"PO-Revision-Date: 2013-05-30 14:33-0800\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,10 +14,26 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: misspelling-reporter.php:49
+#: misspelling-reporter.php:59
+msgid "Success!"
+msgstr ""
+
+#: misspelling-reporter.php:60
+msgid "Click to report misspelling"
+msgstr ""
+
+#: misspelling-reporter.php:90
 msgid "Misspelling Report"
 msgstr ""
 
-#: misspelling-reporter.php:62
+#: misspelling-reporter.php:92
+msgid "Post: "
+msgstr ""
+
+#: misspelling-reporter.php:93
+msgid "Misspelling: "
+msgstr ""
+
+#: misspelling-reporter.php:105
 msgid "Misspelling Reported"
 msgstr ""
