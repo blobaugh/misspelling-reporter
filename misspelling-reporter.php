@@ -107,3 +107,5 @@ class Misspelt {
 
 } // Misspelt
 } // class exists
+
+$load = new Misspelt;
