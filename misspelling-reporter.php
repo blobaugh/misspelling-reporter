@@ -128,7 +128,7 @@ class Misspelt {
 	 * @since 0.6.3
 	 *
 	 * @param int $post_id The supplied post id.
-	 * @param str $typo The supplied typo.
+	 * @param string $typo The supplied typo.
 	 */
 	public function typo_check( $post_id, $typo ) {
 		// check if the typo has been submitted previously
