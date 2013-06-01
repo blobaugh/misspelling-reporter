@@ -29,14 +29,14 @@ class Misspelt {
 	 * @since 0.6.2
 	 */
 	public function init() {
-		define( 'MISSR_PLUGIN_DIR', trailingslashit( dirname( __FILE__ ) ) );
-		define( 'MISSR_PLUGIN_URL', trailingslashit( WP_PLUGIN_URL . '/' . basename( __DIR__ ) ) );
+		define( 'MISSR_PLUGIN_DIR' , trailingslashit( dirname( __FILE__ ) ) );
+		define( 'MISSR_PLUGIN_URL' , trailingslashit( WP_PLUGIN_URL . '/' . basename( __DIR__ ) ) );
 		define( 'MISSR_PLUGIN_FILE', MISSR_PLUGIN_DIR . basename( __DIR__ ) . '.php' );
 
 		load_plugin_textdomain( 'missr', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		add_action( 'wp_ajax_missr_report', array( $this, 'ajax_report' ) );
+		add_action( 'wp_enqueue_scripts'         , array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_ajax_missr_report'       , array( $this, 'ajax_report' ) );
 		add_action( 'wp_ajax_nopriv_missr_report', array( $this, 'ajax_report' ) );
 	}
 
@@ -74,25 +74,24 @@ class Misspelt {
 	 */
 	public function ajax_report() {
 		$original_post_id = absint( $_POST['post_id'] );
-		$typo = sanitize_text_field( $_POST['selected'] ); 
+		$typo             = sanitize_text_field( $_POST['selected'] ); 
 
-		if($this->typo_check( $original_post_id, $typo)){
+		if ( ! empty( $this->typo_check( $original_post_id, $typo ) ) ) {
 			_e( 'Misspelling Already Reported', 'missr' );
-			return; 
+			die; 
 		}
 		
 		$args = array(
-			'post_type' => 'missr_report',
-			'post_title' => $typo,
+			'post_type'   => 'missr_report',
+			'post_title'  => $typo,
 			'post_parent' => $original_post_id
 		);
 
-		$post_id = wp_insert_post( $args );
+		wp_insert_post( $args );
 		
-
-		//update_post_meta( $post_id, 'missr_post_id', $original_post_id );
-
 		$this->email_notify( $original_post_id );
+		
+		die;
 	}
 
 	/**
@@ -107,7 +106,7 @@ class Misspelt {
 
 		$subject = __( 'Misspelling Report', 'missr' );
 
-		$body = __( 'Post: ', 'missr' ) . get_permalink( $post->ID ) . "\n\n";
+		$body  = __( 'Post: ', 'missr' ) . get_permalink( $post->ID ) . "\n\n";
 		$body .= __( 'Misspelling: ', 'missr' ) . esc_html( $_POST['selected'] );
 
 		// Email site admin
@@ -133,16 +132,13 @@ class Misspelt {
 	public function typo_check( $post_id, $typo ) {
 		// check if the typo has been submitted previously
 		$args = array(
-			's' => $typo,
-			'post_type' => 'missr_report',
+			's'           => $typo,
+			'post_type'   => 'missr_report',
 			'post_status' => 'draft',
 			'post_parent' => $post_id
 		); 
-		$typo_check = get_posts($args);
-
-		// if posts found return true 
-		if( $typo_check )
-			return true; 
+		
+		return get_posts( $args );
 		
 	}
 
