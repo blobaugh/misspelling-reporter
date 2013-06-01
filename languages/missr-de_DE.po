@@ -4,7 +4,7 @@ msgstr ""
 "POT-Creation-Date: 2013-05-30 14:33-0800\n"
 "PO-Revision-Date: 2013-05-31 23:04-0700\n"
 "Last-Translator: \n"
-"Language-Team: BeachPress 2013\n"
+"Language-Team: BeachPress\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -17,24 +17,24 @@ msgstr ""
 
 #: misspelling-reporter.php:59
 msgid "Success!"
-msgstr ""
+msgstr "Erfolg!"
 
 #: misspelling-reporter.php:60
 msgid "Click to report misspelling"
-msgstr ""
+msgstr "Klicken Sie auf Rechtschreibfehler melden:"
 
 #: misspelling-reporter.php:90
 msgid "Misspelling Report"
-msgstr ""
+msgstr "Rechtschreibfehler melden"
 
 #: misspelling-reporter.php:92
 msgid "Post: "
-msgstr ""
+msgstr "Beitrag:"
 
 #: misspelling-reporter.php:93
 msgid "Misspelling: "
-msgstr ""
+msgstr "Rechtschreibfehler:"
 
 #: misspelling-reporter.php:105
 msgid "Misspelling Reported"
-msgstr ""
+msgstr "Berichtet misspelling"
