@@ -17,24 +17,24 @@ msgstr ""
 
 #: misspelling-reporter.php:59
 msgid "Success!"
-msgstr "Success!"
+msgstr "Réussite!"
 
 #: misspelling-reporter.php:60
 msgid "Click to report misspelling"
-msgstr "Signaler faute d'orthographe"
+msgstr "Signalez une faute d'orthographe"
 
 #: misspelling-reporter.php:90
 msgid "Misspelling Report"
-msgstr "Misspelling rapport"
+msgstr "Faute d'orthographe"
 
 #: misspelling-reporter.php:92
 msgid "Post: "
-msgstr "message:"
+msgstr "Article:"
 
 #: misspelling-reporter.php:93
 msgid "Misspelling: "
-msgstr "faute d'orthographe:"
+msgstr "Faute d'orthographe:"
 
 #: misspelling-reporter.php:105
 msgid "Misspelling Reported"
-msgstr "Rapporté faute d'orthographe"
+msgstr "Faute d'orthographe rapportée"
