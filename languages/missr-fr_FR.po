@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Misspelling Reporter\n"
 "POT-Creation-Date: 2013-05-30 14:33-0800\n"
-"PO-Revision-Date: 2013-05-31 23:04-0700\n"
+"PO-Revision-Date: 2013-05-31 22:59-0700\n"
 "Last-Translator: \n"
 "Language-Team: BeachPress 2013\n"
 "MIME-Version: 1.0\n"
@@ -17,24 +17,24 @@ msgstr ""
 
 #: misspelling-reporter.php:59
 msgid "Success!"
-msgstr ""
+msgstr "Success!"
 
 #: misspelling-reporter.php:60
 msgid "Click to report misspelling"
-msgstr ""
+msgstr "Signaler faute d'orthographe"
 
 #: misspelling-reporter.php:90
 msgid "Misspelling Report"
-msgstr ""
+msgstr "Misspelling rapport"
 
 #: misspelling-reporter.php:92
 msgid "Post: "
-msgstr ""
+msgstr "message:"
 
 #: misspelling-reporter.php:93
 msgid "Misspelling: "
-msgstr ""
+msgstr "faute d'orthographe:"
 
 #: misspelling-reporter.php:105
 msgid "Misspelling Reported"
-msgstr ""
+msgstr "Rapporté faute d'orthographe"
