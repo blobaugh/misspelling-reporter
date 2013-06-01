@@ -20,7 +20,7 @@ How to use:
 *   Highlight a word
 *   Click the report button that appears in the upper left
 
-Help make this plugin better!
+= Help make this plugin better! =
 Have an idea or want to help with translations? Head over to Github and send us a pull request! https://github.com/blobaugh/misspelling-reporter
 
 == Installation ==
