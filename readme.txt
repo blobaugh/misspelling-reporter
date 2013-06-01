@@ -37,6 +37,7 @@ e.g.
 * Classified
 * Fix JS potential XSS vulnerability (itsananderson)
 * General code cleanup to keep developers happy :)
+* New language translations: French, German, Spanish (DrewAPicture)
 
 = 0.6.2 =
 * Fixed issues causing wp minify to break (pento)
