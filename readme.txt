@@ -35,6 +35,9 @@ e.g.
 
 == Changelog ==
 
+= 0.6.4 =
+* Only sends a report on an individual misspelled word once (thoronas)
+
 = 0.6.3 =
 * Updates to Arabic translation (DrewAPicture)
 * Classified
