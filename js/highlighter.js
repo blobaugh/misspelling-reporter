@@ -42,6 +42,11 @@
 				var word = '';
 
 				if ( '' != selected ) {
+
+					// Retrieve cursor position 
+					xposition = e.pageX + 35;
+					yposition = e.pageY - 10;
+
 					var first_word = selected.split(' ');
 					word = first_word[0];
 				}
@@ -55,7 +60,7 @@
 				}
 
 				// Show popdown to report misspelling
-				$( 'body' ).append($('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(this);">' + post.click_to_report + '</div>').attr('data-word', word));
+				$( 'body' ).append($('<div id="missr_dialog" onclick="MisspellingReporter.missrClicked(this);" style="top:'+yposition+'px; left:'+xposition+'px;">' + post.click_to_report + '</div>').attr('data-word', word));
 			});
 
 		});
