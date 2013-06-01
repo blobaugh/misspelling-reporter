@@ -15,10 +15,13 @@ Misspelling Reporter allows site visitors to highlight a misspelled word on your
 the message that pops up to alert the site admin and post author of the misspelling.
 
 How to use:
-* Install and activate plugin
-* Visit a single post
-* Highlight a word
-* Click the report button that appears in the upper left
+1 Install and activate plugin
+2 Visit a single post
+3 Highlight a word
+4 Click the report button that appears in the upper left
+
+=== Help make this plugin better! ===
+Have an idea or want to help with translations? Head over to Github and send us a pull request! https://github.com/blobaugh/misspelling-reporter
 
 == Installation ==
 
