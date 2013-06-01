@@ -1,7 +1,6 @@
 #missr_dialog {
 	cursor: pointer;
 	position: fixed;
-	top: 0px;
 	z-index: 999999999;
 	padding: 7px;
 	background-color: yellow;
