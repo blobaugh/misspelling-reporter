@@ -76,7 +76,7 @@ class Misspelt {
 		$original_post_id = absint( $_POST['post_id'] );
 		$typo             = sanitize_text_field( $_POST['selected'] ); 
 
-		if ( ! empty( $this->typo_check( $original_post_id, $typo ) ) ) {
+		if ( 0 != count( $this->typo_check( $original_post_id, $typo ) ) ) {
 			_e( 'Misspelling Already Reported', 'missr' );
 			die; 
 		}
