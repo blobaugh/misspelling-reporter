@@ -35,6 +35,9 @@ e.g.
 
 == Changelog ==
 
+= 0.6.5 =
+*    Fix for fatal error triggering on plugin activation
+
 = 0.6.4 =
 * Only sends a report on an individual misspelled word once (thoronas)
 
