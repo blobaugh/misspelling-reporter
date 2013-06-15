@@ -75,10 +75,11 @@ class Misspelt {
 	public function ajax_report() {
 		$original_post_id = absint( $_POST['post_id'] );
 		$typo             = sanitize_text_field( $_POST['selected'] ); 
-
-		if ( 0 != count( $this->typo_check( $original_post_id, $typo ) ) ) {
-			_e( 'Misspelling Already Reported', 'missr' );
-			die; 
+		
+		$typo_check = $this->typo_check( $original_post_id, $typo ); 
+		
+		if ( ! empty( $typo_check ) ) {
+			die( _e( 'Misspelling Already Reported', 'missr' ) );
 		}
 		
 		$args = array(
