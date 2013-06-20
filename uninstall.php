@@ -6,6 +6,21 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit();
 
-global $wpdb;
+/**
+* Cleans up all posts of missr_report type
+*/
+function missr_uninstall() {
+	
+	global $post;
 
-$wpdb->query("DELETE FROM wp_posts WHERE post_type = 'missr_report' ");
+	$posts_query = new WP_Query( 'post_type=missr_report' );
+	
+	while ( $posts_query->have_posts() ) {
+		$posts_query->the_post();
+		wp_delete_post( $post->ID, true );
+	}
+	
+	wp_reset_postdata();
+} 
+
+missr_uninstall();
