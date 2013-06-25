@@ -38,6 +38,14 @@ class Misspelt {
 		add_action( 'wp_enqueue_scripts'         , array( $this, 'enqueue_scripts' ) );
 		add_action( 'wp_ajax_missr_report'       , array( $this, 'ajax_report' ) );
 		add_action( 'wp_ajax_nopriv_missr_report', array( $this, 'ajax_report' ) );
+
+		// The forth parameter disables autoload since option(s) are not essential to plugin's functionality.
+		add_option('missr_options', array( 'persist_data_on_uninstall' => '1'), '', 'no');
+
+		if(is_admin()) {
+			add_action( 'admin_menu', array( $this, 'missr_add_page') );
+			add_action('admin_init', array( $this, 'missr_admin_init') );
+		}
 	}
 
 	/**
@@ -143,7 +151,91 @@ class Misspelt {
 		
 	}
 
+	/* Adds submenu to the settings menu */
+	public function missr_add_page() {
+		add_options_page('Misspelling Reporter', 'Misspelling Reporter', 
+			'manage_options', 'missr_plugin', array( $this, 'missr_options_page') );
+	}
+
+	/* Template for settings page */
+	public function missr_options_page() {
+		?>
+
+		<div class="wrap">
+		<?php screen_icon(); ?>
+			<h2>Misspelling Reporter</h2>
+			<form action="options.php" method="post" >
+		<?php
+			settings_fields('missr_plugin_options');
+			do_settings_sections('missr_plugin'); 	
+			submit_button();
+		?>
+			</form> 
+		</div>
+		<?php
+	}
+
+	/* Configure settings page */
+	public function missr_admin_init() {
+		// add the option to whitelist_options
+		register_setting(
+			'missr_plugin_options',
+			'missr_options', 
+			array( $this, 'missr_plugin_validate_options')
+		);
+
+		add_settings_section(
+			'missr_plugin_main',
+			'',
+			'', 
+			'missr_plugin' // slug-name of the settings page
+		); 
+
+		add_settings_field( 
+			'missr_plugin_select_form',
+			'Plugin Data', 
+			array( $this, 'missr_plugin_setting_input'),
+			'missr_plugin',
+			'missr_plugin_main' // the section of settings page in which to show fields(defined in add_settings_section)
+		);
+	}
+
+	public function missr_plugin_validate_options( $input ) { 
+		
+		if( '1' === $input or '0' !== $input ) 
+			$input = array( 'persist_data_on_uninstall' => '1' );
+		else 
+			$input = array( 'persist_data_on_uninstall' => '0' ); 
+		
+		return $input; 
+	}
+
+	/* Markup for settings page */
+	public function missr_plugin_setting_input() { ?>
+		
+		<label for="keep_data">
+			<input name="missr_options" type="radio" id="keep_data" value="1" 
+		<?php 
+			$options = get_option('missr_options');
+			checked( '1', $options[ 'persist_data_on_uninstall' ] ); 
+		?> />
+			Keep all plugin data upon plugin removal
+		</label><br />
+		
+		<label for="delete_data">
+				<input name="missr_options" type="radio" id="delete_data" value="0" 
+		<?php 
+			$options = get_option('missr_options');
+			checked('0', $options['persist_data_on_uninstall' ] ); 
+		?> />  
+			Delete all data upon plugin removal
+		</label>
+			
+		<?php
+	}
+
 } // Misspelt
 } // class exists
 
 $load = new Misspelt;
+
