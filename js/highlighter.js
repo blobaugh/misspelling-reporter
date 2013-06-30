@@ -48,7 +48,7 @@
 
 					// Retrieve cursor position 
 					xposition = e.pageX + 35;
-					yposition = e.pageY - 10;
+					yposition = e.pageY - window.scrollY - 10; // take scrollbar offset into account
 
 					var first_word = selected.split(' ');
 					word = first_word[0];
