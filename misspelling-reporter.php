@@ -115,9 +115,10 @@ class Misspelt {
 
 		$subject = __( 'Misspelling Report', 'missr' );
 
-		$body  = __( 'Post: ', 'missr' ) . get_permalink( $post->ID ) . "\n\n";
-		$body .= __( 'Misspelling: ', 'missr' ) . esc_html( $_POST['selected'] );
-
+		$body  = __( 'Post: ', 'missr' ) . $post->post_title . "\n\n";
+		$body .= __( 'Misspelling: ', 'missr' ) . esc_html( $_POST['selected'] ) . "\n\n";
+		$body .= 'Click to edit a post: ' . get_edit_post_link( $post->ID, "" );
+		
 		// Email site admin
 		wp_mail( get_option( 'admin_email' ), $subject, $body );
 
