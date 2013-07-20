@@ -54,15 +54,21 @@ class Misspelt {
 	 * @since 0.6
 	 */
 	public function enqueue_scripts() {
-		if ( ! is_singular() )
-			return;
+		if ( ! is_singular() ) {
+			$post_id = NULL;
+			$is_singular = false;
+		} else {
+			$post_id = get_the_ID();
+			$is_singular = true;
+		}
 
 		// Front end text selection code
 		wp_enqueue_script( 'missr_highlighter', MISSR_PLUGIN_URL . 'js/highlighter.js', array( 'jquery' ) );
 		wp_enqueue_style( 'misspelling_style', MISSR_PLUGIN_URL . 'style.css' );
 
 		$info = array(
-			'post_id'         => get_the_ID(),
+			'post_id'         => $post_id,
+			'is_singular'       => $is_singular,
 			'ajaxurl'         => admin_url( 'admin-ajax.php', 'relative' ),
 			'success'         => __( 'Success!', 'missr' ),
 			'click_to_report' => __( 'Click to report misspelling', 'missr' )
@@ -82,14 +88,20 @@ class Misspelt {
 	 */
 	public function ajax_report() {
 		$original_post_id = absint( $_POST['post_id'] );
-		$typo             = sanitize_text_field( $_POST['selected'] ); 
-		
-		$typo_check = $this->typo_check( $original_post_id, $typo ); 
-		
+
+		// do nothing if post doesn't exist
+		if( ! get_post( $original_post_id ) ) {
+			die;
+		}
+
+		$typo             = sanitize_text_field( $_POST['selected'] );
+
+		$typo_check = $this->typo_check( $original_post_id, $typo );
+
 		if ( ! empty( $typo_check ) ) {
 			die( _e( 'Misspelling Already Reported', 'missr' ) );
 		}
-		
+
 		$args = array(
 			'post_type'   => 'missr_report',
 			'post_title'  => $typo,
@@ -97,9 +109,9 @@ class Misspelt {
 		);
 
 		wp_insert_post( $args );
-		
+
 		$this->email_notify( $original_post_id );
-		
+
 		die;
 	}
 
@@ -129,7 +141,7 @@ class Misspelt {
 
 		_e( 'Misspelling Reported', 'missr' );
 	}
-	
+
 	/**
 	 * Check for typo
 	 *
@@ -145,15 +157,15 @@ class Misspelt {
 			'post_type'   => 'missr_report',
 			'post_status' => 'draft',
 			'post_parent' => $post_id
-		); 
-		
+		);
+
 		return get_posts( $args );
-		
+
 	}
 
 	/* Adds submenu to the settings menu */
 	public function missr_add_page() {
-		add_options_page('Misspelling Reporter', 'Misspelling Reporter', 
+		add_options_page('Misspelling Reporter', 'Misspelling Reporter',
 			'manage_options', 'missr_plugin', array( $this, 'missr_options_page') );
 	}
 
@@ -167,10 +179,10 @@ class Misspelt {
 			<form action="options.php" method="post" >
 		<?php
 			settings_fields('missr_plugin_options');
-			do_settings_sections('missr_plugin'); 	
+			do_settings_sections('missr_plugin');
 			submit_button();
 		?>
-			</form> 
+			</form>
 		</div>
 		<?php
 	}
@@ -180,57 +192,57 @@ class Misspelt {
 		// add the option to whitelist_options
 		register_setting(
 			'missr_plugin_options',
-			'missr_options', 
+			'missr_options',
 			array( $this, 'missr_plugin_validate_options')
 		);
 
 		add_settings_section(
 			'missr_plugin_main',
 			'',
-			'', 
+			'',
 			'missr_plugin' // slug-name of the settings page
-		); 
+		);
 
-		add_settings_field( 
+		add_settings_field(
 			'missr_plugin_select_form',
-			'Plugin Data', 
+			'Plugin Data',
 			array( $this, 'missr_plugin_setting_input'),
 			'missr_plugin',
 			'missr_plugin_main' // the section of settings page in which to show fields(defined in add_settings_section)
 		);
 	}
 
-	public function missr_plugin_validate_options( $input ) { 
-		
-		if( '1' === $input or '0' !== $input ) 
+	public function missr_plugin_validate_options( $input ) {
+
+		if( '1' === $input or '0' !== $input )
 			$input = array( 'persist_data_on_uninstall' => '1' );
-		else 
-			$input = array( 'persist_data_on_uninstall' => '0' ); 
-		
-		return $input; 
+		else
+			$input = array( 'persist_data_on_uninstall' => '0' );
+
+		return $input;
 	}
 
 	/* Markup for settings page */
 	public function missr_plugin_setting_input() { ?>
-		
+
 		<label for="keep_data">
-			<input name="missr_options" type="radio" id="keep_data" value="1" 
-		<?php 
+			<input name="missr_options" type="radio" id="keep_data" value="1"
+		<?php
 			$options = get_option('missr_options');
-			checked( '1', $options[ 'persist_data_on_uninstall' ] ); 
+			checked( '1', $options[ 'persist_data_on_uninstall' ] );
 		?> />
 			Keep all plugin data upon plugin removal
 		</label><br />
-		
+
 		<label for="delete_data">
-				<input name="missr_options" type="radio" id="delete_data" value="0" 
-		<?php 
+				<input name="missr_options" type="radio" id="delete_data" value="0"
+		<?php
 			$options = get_option('missr_options');
-			checked('0', $options['persist_data_on_uninstall' ] ); 
-		?> />  
+			checked('0', $options['persist_data_on_uninstall' ] );
+		?> />
 			Delete all data upon plugin removal
 		</label>
-			
+
 		<?php
 	}
 
